@@ -3,14 +3,14 @@ const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const htmlPlugin = new HtmlWebpackPlugin({
-  template: "./src/app/index.html",
+  template: "./src/index.html",
   filename: "./index.html"
 })
 
 module.exports = {
-  entry: "./src/app",
+  entry: "./src/",
   output: {
-    path: path.resolve(__dirname, "../server/client_build/dist"),
+    path: path.resolve(__dirname, "/dist"),
     filename: "bundle.js",
   },
   "devServer": {
@@ -20,12 +20,6 @@ module.exports = {
     'static': { 
       directory: __dirname + '/public/'
     },
-    "proxy": {
-      "/": {
-        "target": "http://localhost:3000",
-        "router":  () => "http://127.0.0.1:3001"
-      }
-    }
   },
   module: {
     rules: [
