@@ -1,11 +1,13 @@
 import React from 'react'
-import SearchResults from './SearchResults'
+import SearchResults from './searchResults/SearchResults'
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
 	body: {
 		width: '100%',
-		display: 'flex'
+		display: 'flex',
+		padding: '0 17px',
+		margin: '16px 0'
 	}
 })
 
