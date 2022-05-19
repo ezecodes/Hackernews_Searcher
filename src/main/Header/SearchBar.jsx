@@ -5,7 +5,8 @@ import SearchIcon from '@material-ui/icons/Search'
 import { makeStyles } from '@material-ui/core/styles'
 import IconButton from '@material-ui/core/IconButton'
 
-import { dispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { fetchPosts } from '../../redux/appSlice'
 
 const useStyles = makeStyles({
 	searchBar: {
@@ -30,14 +31,10 @@ const useStyles = makeStyles({
 
 
 const SearchBar = () => {
+	const dispatch = useDispatch()
 	const classes = useStyles()
 	const handleInput = (value) => {
-		fetch(`http://hn.algolia.com/api/v1/search?query=${value}&tags=story`)
-		.then(res => res.json())
-		.then(res => {
-			// dispatch({
-			// })
-		})
+		dispatch(fetchPosts(`http://hn.algolia.com/api/v1/search?query=${value}&tags=story`))
 	}
 	return (
 		<div className={classes.searchBar}>
