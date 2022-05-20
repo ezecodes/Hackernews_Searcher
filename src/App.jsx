@@ -21,8 +21,8 @@ const App = () => {
 	return (
 		<ThemeProvider theme={theme}>
 			<Routes>
-				<Route path='/' element={<PostDetails />} />
-				<Route path={`${document.location.href}/stories/${currentURL}`} element={<PostDetails />} />
+				<Route path='/' element={<Posts />} />
+				<Route path={`/stories/${currentURL}`} element={<PostDetails />} />
 			</Routes>
 		</ThemeProvider>
 	)
