@@ -18,6 +18,7 @@ export const fetchPostDetails = createAsyncThunk(
 
 const initialState = {
 	results: [],
+	light: true,
 	loader: {
     post: false,
     postDetails: false
@@ -30,9 +31,12 @@ const appSlice = createSlice({
 	name: 'app',
 	initialState,
 	reducers: {
-    	setPostDetailsURL: (state, action) => {
-    		state.postDetailsURL = action.payload
-    	}
+		setMode: (state, action) => {
+			state.light = action.payload
+		},
+  	setPostDetailsURL: (state, action) => {
+  		state.postDetailsURL = action.payload
+  	}
 	},
 	extraReducers: (builder) => {
 		builder.addCase(fetchPosts.pending, (state, action) => {
@@ -54,6 +58,6 @@ const appSlice = createSlice({
 		})
 	}
 })
-export const {setPostDetailsURL} = appSlice.actions
+export const {setPostDetailsURL, setMode} = appSlice.actions
 
 export default appSlice.reducer
