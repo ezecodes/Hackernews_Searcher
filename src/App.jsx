@@ -1,7 +1,10 @@
 import React from 'react'
-import Main from './main/Main'
 import styles from './styles/css.module.css'
 import { createTheme, ThemeProvider } from '@material-ui/core'
+import { Routes, Route } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import Main from './main/Main'
+import PostDetails from './main/PostDetails'
 
 const theme = createTheme({
 	primary: {
@@ -14,9 +17,13 @@ const theme = createTheme({
 
 
 const App = () => {
+	const currentURL = useSelector(state => state.app.postDetailsURL)
 	return (
 		<ThemeProvider theme={theme}>
-			<Main />
+			<Routes>
+				<Route path='/' element={<Main />} />
+				<Route path={`${document.location.href}/stories/${currentURL}`} element={<PostDetails />} />
+			</Routes>
 		</ThemeProvider>
 	)
 }
