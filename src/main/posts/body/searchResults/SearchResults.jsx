@@ -21,7 +21,7 @@ const useStyles = makeStyles({
 const SearchResults = () => {
 	const classes = useStyles()
 	const hits = useSelector(state => state.app.results)
-	const loader = useSelector(state => state.app.loader)
+	const loader = useSelector(state => state.app.loader.post)
 	return (
 		<section className={classes.resultsMain} >
 			{ loader ?<div className={classes.loader}>
