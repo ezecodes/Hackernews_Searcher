@@ -5,6 +5,9 @@ const colors = ['#cd6e6e','#d19205','#6ccef3','#6c89f3','#5540a9','#9f7775','#e7
 
 const UserAvatar = (props) => {
 	const {name, className} = props
+	if (name !== undefined && name !== '') {
+		return ''
+	}
 	let val = '', split = name.split(' ')
 	split.length <= 2 
 	? split.forEach(i => val += i[0]) 
