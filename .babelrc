@@ -9,5 +9,13 @@
       }
     ],
     "@babel/react"
+  ],
+  "plugins": [
+    ["prismjs", {
+        "languages": ["javascript", "css", "markup", "php", "python", "java"],
+        "plugins": ["line-numbers"],
+        "theme": "okaidia",
+        "css": true
+    }]
   ]
 }
