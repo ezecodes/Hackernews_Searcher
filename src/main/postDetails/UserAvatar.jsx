@@ -5,7 +5,7 @@ const colors = ['#cd6e6e','#d19205','#6ccef3','#6c89f3','#5540a9','#9f7775','#e7
 
 const UserAvatar = (props) => {
 	const {name, className} = props
-	if (name === undefined || name === '') {
+	if (name === undefined || name === '' || name === null) {
 		return ''
 	}
 	let val = '', split = name.split(' ')
