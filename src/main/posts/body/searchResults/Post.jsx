@@ -2,7 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import {fetchPostDetails, setPostDetailsURL} from '../../../redux/appSlice'
+import {fetchPostDetails, setPostDetailsURL} from '../../../../redux/appSlice'
 
 const useStyles = makeStyles({
 	post: {

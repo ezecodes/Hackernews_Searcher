@@ -4,7 +4,7 @@ import Header from './header/Header'
 import Body from './body/Body'
 
 const useStyles = makeStyles({
-	main: {
+	posts: {
 		height: '100%',
 		width: '100%',
 		display: 'flex',
@@ -23,10 +23,10 @@ const useStyles = makeStyles({
 		}
 	}
 })
-const Main = () => {
+const Posts = () => {
 	const classes = useStyles()
 	return (
-		<section className={classes.main}>
+		<section className={classes.posts}>
 			<section className={classes.content}>	
 				<Header />
 				<Body />
@@ -35,4 +35,4 @@ const Main = () => {
 	)
 }
 
-export default Main
+export default Posts
