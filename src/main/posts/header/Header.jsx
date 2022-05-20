@@ -1,41 +1,83 @@
 import React from 'react'
-import SearchBar from './SearchBar'
 import { makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import ToolBar from '@material-ui/core/ToolBar'
 import IconButton from '@material-ui/core/IconButton'
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
+import NightsStayIcon from '@material-ui/icons/NightsStay'
+import WbIncandescentIcon from '@material-ui/icons/WbIncandescent'
+import SearchBar from './SearchBar'
+import { setMode } from '../../../redux/appSlice'
+
+import { useSelector, useDispatch } from 'react-redux'
 
 const useStyles = makeStyles({
 	header: {
-		background: '#464544',
-		position: 'sticky'
-	},
-	toolbar: {
-		minHeight: 'initial',
-		padding: '12px 20px'
+		position: 'sticky',
+		width: '100%',
+		padding: '0 50px',
+		marginTop: '3rem',
+		display: 'flex',
+		flexDirection: 'column'
 	},
 	headerItem: {
 		'&& h1': {
-			color: '#fff',
-			lineHeight: '1.2'
+			fontSize: '1.5rem',
+			lineHeight: '1.1',
+			color: '#838383',
+			fontFamily: 'LibreFranklin-Bold !important',
+
+		},
+		'&& strong': {
+			color: '#ff8303'
 		}
+	},
+	intro: {
+		display: 'flex',
+		justifyContent: 'space-between'
+	},
+	spanh1: {
+		fontSize: '1rem',
+		fontWeight: '100',
+		display: 'block',
+		color:'#4e6b9f',
+		marginTop: '2px'
+	},
+	searching: {
+		margin: '26px 90px'
 	}
 })
 
 
 const Header = () => {
+	const dispatch = useDispatch()
 	const classes = useStyles()
-
+	const light = useSelector(state => state.app.light)
+	const changeMode = () => {
+		dispatch(setMode(!light))
+	}
 	return (
-		<AppBar className={classes.header}>
-			<ToolBar className={classes.toolbar} >
-				<div className={classes.headerItem}>
-					<h1> Search <br/> Hacker News </h1>
+		<header className={classes.header} >
+			<div className={classes.headerItem}>
+
+				<div className={classes.intro}>
+					<div className={classes.row}>
+						<h1> <strong>Hacker News</strong> <span className={classes.spanh1}>/search </span>  </h1>
+					</div>
+					<div className={classes.row}>
+						<IconButton onClick={changeMode}>
+							{light ? <WbIncandescentIcon /> : <NightsStayIcon /> }
+						</IconButton>	
+					</div>
 				</div>
-				<SearchBar />	
-			</ToolBar>
-		</AppBar>
+				
+			</div>
+			<div className={classes.headerItem}>
+				<div className={classes.searching}>
+					<SearchBar />
+				</div>
+			</div>
+		</header>
 	)
 }
 

@@ -16,7 +16,7 @@ const UserAvatar = (props) => {
 	return (
 		<Avatar 
 			className={[className].join(' ')} 
-			style={{background: colors[name.length] || '#bdbdbd'}}
+			style={{background: colors[name.length] || '#bdbdbd', textTransform: 'uppercase'}}
 			> 
 				{val} 
 		</Avatar>

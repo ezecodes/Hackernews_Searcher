@@ -4,34 +4,68 @@ import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import {fetchPostDetails, setPostDetailsURL} from '../../../../redux/appSlice'
 
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import CommentIcon from '@material-ui/icons/Comment';
+import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
+import Typography from '@material-ui/core/Typography';
+import UserAvatar from '../../../UserAvatar';
+import IconButton from '@material-ui/core/IconButton';
+
 const useStyles = makeStyles({
 	post: {
 		marginBottom: '10px'
 	},
-	postTitle: {
-		fontSize: '1.12rem',
-		'&& a': {
-			transition: '.4s ease all',
-			textDecoration: 'none',
-			color: '#990303',
+	cardHeader: {
+		'&& .MuiCardHeader-title': {
+			fontWeight: 'bold'
 		},
-		'&& a:hover': {
-			color: '#e30101'
+		'&& .MuiCardHeader-subheader': {
+			fontSize: '.74rem'
 		}
 	},
-	postDetails: {
-		fontSize: '.8rem',
-		margin: '2px 0 0 6px',
-		'&& span:not(span:last-of-type)': {
-			paddingRight: '8px',
-			borderRight: '1px solid '
+	cardContent: {
+		padding: '3px 16px',
+		'&& .MuiTypography-body1': {
+			fontSize: '1rem',
 		},
-		'&& span:not(span:first-child)': {
-			paddingLeft: '8px',
+		'&& .MuiTypography-body2': {
+			color: 'rgb(0 0 0 / 99%)',
+			fontSize: '.965rem',
+			lineHeight: '1.4'
 		}
-	}
+	},
+	cardActions: {
+		padding: '5px',
+		justifyContent: 'flex-end'
+	},
+	actions: {
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		marginRight: '15px',
+		fontSize: '.8rem !important',
+		'&& .MuiButtonBase-root': {
+			padding: '3px',
+		}
+	},
+	points: {
+		'&& *:not(path)': {
+			color: '#ab4da8'
+		},
+	},
+	childrenCount: {
+		'&& *:not(path)': {
+			color: '#7b86bb'
+		},
+	},
 })
 
+const getDate = (date) => {
+	return (/[0-9]*-[0-9]*-[0-9]*/).exec(date)[0]
+}
 
 const Post = ({post}) => {
 	const dispatch = useDispatch()
@@ -40,9 +74,36 @@ const Post = ({post}) => {
 		dispatch(setPostDetailsURL(objectID))
 		dispatch(fetchPostDetails(objectID))
 	}
+	console.log(post)
 	return (
-		<div className={classes.post}>
-			<span className={classes.postTitle} onClick={() => handlePostDetails(post.objectID)} >
+		<Card className={classes.post}>
+			<CardHeader 
+				avatar=
+					{
+						<UserAvatar name={post.author} />
+					}
+				title={post.author}
+				subheader={getDate(post.created_at)}
+				className={classes.cardHeader}
+			/>
+			<CardContent className={classes.cardContent} >
+				<Typography variant='body1' component='h2'>
+					{post.title}
+				</Typography>
+			</CardContent>
+			<CardActions className={classes.cardActions} >
+				<span className={[classes.actions, classes.points].join(' ')}>
+					<ArrowDropUpIcon />
+					<span className={classes.actionInfo}>{post.points}</span>
+				</span>
+				<span className={[classes.actions, classes.childrenCount].join(' ')}>
+					<IconButton>
+						<CommentIcon />
+					</IconButton>
+					<span className={classes.actionInfo}>{post.num_comments}</span>
+				</span>
+			</CardActions>
+			{/*<span className={classes.postTitle} onClick={() => handlePostDetails(post.objectID)} >
 			 <Link to={`/stories/${post.objectID}`}> {post.title}</Link> 
 			</span>
 			<div className={classes.postDetails} > 
@@ -56,8 +117,8 @@ const Post = ({post}) => {
 					{`${post.num_comments} comments`}
 				</span>  
 
-			</div>
-		</div>
+			</div>*/}
+		</Card>
 	)
 }
 

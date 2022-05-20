@@ -4,28 +4,38 @@ import InputAdornment from '@material-ui/core/InputAdornment'
 import SearchIcon from '@material-ui/icons/Search'
 import { makeStyles } from '@material-ui/core/styles'
 import IconButton from '@material-ui/core/IconButton'
-
+import EditIcon from '@material-ui/icons/Edit'
 import { useDispatch } from 'react-redux'
 import { fetchPosts } from '../../../redux/appSlice'
 
 const useStyles = makeStyles({
 	searchBar: {
-		flex: 1,
-		marginLeft: '30px'
+		display: 'flex',
+		flexDirection: 'column'
 	},
 	input: {
 		width: '100%',
 		'&& .MuiOutlinedInput-input': {
 			padding: '14.5px 14px',
-			color: '#fff'
+			color: '#64503b'
+		},
+		'&& .MuiOutlinedInput-root': {
+			border: '1px solid #343c5e',
+			transition: '.6s ease all',
+			'&&:hover': {
+				borderColor: '#000'
+			}
 		},
 		'&& .MuiOutlinedInput-notchedOutline': {
-			borderColor: '#c9b5a1'
+			display: 'none'
 		}
 	},
 	searchIcon: {
-		fill: '#e1ceba',
+		fill: '#c5a788',
 		fontSize: '1.7rem'
+	},
+	attrIcon: {
+		alignSelf: 'flex-end'
 	}
 })
 
@@ -36,11 +46,16 @@ const SearchBar = () => {
 	const handleInput = (query) => {
 		dispatch(fetchPosts(query))
 	}
+	const setAttr = () => {
+
+	}
 	return (
 		<div className={classes.searchBar}>
 			<TextField 
 				className={classes.input} 
 				variant='outlined' 
+				color='primary'
+				placeholder='Search stories by title, url, or author'
 				onChange={({target}) => handleInput(target.value)} 
 				InputProps={{
 		    	startAdornment: <InputAdornment position='start' >
@@ -48,6 +63,9 @@ const SearchBar = () => {
 		    	</InputAdornment>
 		    }}
 			/>
+			{/*<IconButton onClick={setAttr} className={classes.attrIcon} >
+				<EditIcon />
+			</IconButton>*/}
 		</div>
 	)
 }

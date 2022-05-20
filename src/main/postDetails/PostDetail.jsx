@@ -10,7 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CommentIcon from '@material-ui/icons/Comment';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import Typography from '@material-ui/core/Typography';
-import UserAvatar from './UserAvatar';
+import UserAvatar from '../UserAvatar';
 
 const useStyles = makeStyles({
 	cardMain: {
@@ -37,7 +37,8 @@ const useStyles = makeStyles({
 		}
 	},
 	cardActions: {
-		padding: '8px'
+		padding: '8px',
+		justifyContent: 'flex-end'
 	},
 	actions: {
 		display: 'flex',
@@ -103,10 +104,10 @@ const PostDetail = ({story}) => {
 		 	dangerouslySetInnerHTML={{__html: story.text }} />
 		</CardContent>
 		<CardActions disableSpacing className={classes.cardActions} >
-			<span className={[classes.actions, classes.points].join(' ')} >
+			{ story.points !== null ? <span className={[classes.actions, classes.points].join(' ')} >
 				<ArrowDropUpIcon />
-				<span className={classes.actionInfo}>{story.points || 0}</span>
-			</span>
+				<span className={classes.actionInfo}>{story.points}</span>
+			</span> : <></>}
 			<span className={[classes.actions, classes.childrenCount].join(' ')} >
 				<IconButton onClick={() => handleExpandClick()} >
 					<CommentIcon />
@@ -114,17 +115,19 @@ const PostDetail = ({story}) => {
 				<span className={classes.actionInfo}>{story.children.length}</span>
 			</span>
 		</CardActions>
-		{
-			map && story.children.map((i, key) => {
-				return (
-					<Collapse key={key} in={expanded} timeout="auto" unmountOnExit >
-						<div className={classes.nestedChild} >
-							<PostDetail story={i} />
-						</div>
-					</Collapse>
-				)
-			})
-		}
+		<React.Suspense>
+			{
+				story.children.map((i, key) => {
+					return (
+						<Collapse key={key} in={expanded} timeout="auto" unmountOnExit >
+							<div className={classes.nestedChild} >
+								<PostDetail story={i} />
+							</div>
+						</Collapse>
+					)
+				})
+			}
+		</React.Suspense>
 	</Card>
 	)
 }
