@@ -43,7 +43,7 @@ const Post = ({post}) => {
 	return (
 		<div className={classes.post}>
 			<span className={classes.postTitle} onClick={() => handlePostDetails(post.objectID)} >
-			 <Link to={`stories/${post.objectID}`}> {post.title}</Link> 
+			 <Link to={`/stories/${post.objectID}`}> {post.title}</Link> 
 			</span>
 			<div className={classes.postDetails} > 
 				<span> 
