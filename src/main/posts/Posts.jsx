@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Header from './header/Header'
 import Body from './body/Body'
 
+
 const useStyles = makeStyles({
 	posts: {
 		height: '100%',
@@ -31,6 +32,7 @@ const Posts = () => {
 				<Header />
 				<Body />
 			</section>
+			
 		</section>
 	)
 }
