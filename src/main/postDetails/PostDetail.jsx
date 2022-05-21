@@ -19,6 +19,7 @@ const useStyles = makeStyles({
 			fontWeight: 'bold'
 		},
 		'&& .MuiCardHeader-subheader': {
+			fontSize: '.74rem'
 		}
 	},
 	avatar: {
@@ -28,7 +29,6 @@ const useStyles = makeStyles({
 		padding: '3px 16px',
 		'&& .MuiTypography-body1': {
 			fontSize: '1rem',
-			fontWeight: 'bold'
 		},
 		'&& .MuiTypography-body2': {
 			color: 'rgb(0 0 0 / 99%)',
@@ -45,7 +45,7 @@ const useStyles = makeStyles({
 		justifyContent: 'center',
 		alignItems: 'center',
 		marginRight: '15px',
-
+		fontSize: '.8rem !important',
 		'&& .MuiButtonBase-root': {
 			padding: '3px',
 		}
@@ -73,9 +73,7 @@ const getDate = (date) => {
 const PostDetail = ({story}) => {
 	const classes = useStyles();
 	const [expanded, setExpanded] = React.useState(false);
-	const [map, setMap] = React.useState(false)
   const handleExpandClick = () => {
-  	setMap(!map)
     setExpanded(!expanded);
   };
 

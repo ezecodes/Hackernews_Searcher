@@ -18,7 +18,14 @@ const useStyles = makeStyles({
 		padding: '0 50px',
 		marginTop: '3rem',
 		display: 'flex',
-		flexDirection: 'column'
+		flexDirection: 'column',
+		['@media (max-width: 620px)']: {
+			padding: '0 20px'
+		},
+		['@media (max-width: 425px)']: {
+			padding: '0 12px'
+		},
+		
 	},
 	headerItem: {
 		'&& h1': {
@@ -44,7 +51,13 @@ const useStyles = makeStyles({
 		marginTop: '2px'
 	},
 	searching: {
-		margin: '26px 90px'
+		margin: '26px 90px',
+		['@media (max-width: 620px)']: {
+			margin: '26px 33px'
+		},
+		['@media (max-width: 425px)']: {
+			margin: '26px 0'
+		}
 	}
 })
 

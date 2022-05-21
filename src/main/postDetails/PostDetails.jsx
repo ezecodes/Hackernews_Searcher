@@ -17,10 +17,10 @@ const useStyles = makeStyles({
 		flexDirection: 'column',
 		width: '900px',
 		padding: '0 4%',
-		// ['@media (max-width: 1024px)']: {
-		// 	width: '100%',
-		// 	padding: '0'
-		// }
+		['@media (max-width: 425px)']: {
+			width: '100%',
+			padding: '0 1.5%'
+		}
 	},
 	
 	

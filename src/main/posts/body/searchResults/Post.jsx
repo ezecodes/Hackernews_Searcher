@@ -16,7 +16,15 @@ import IconButton from '@material-ui/core/IconButton';
 
 const useStyles = makeStyles({
 	post: {
-		marginBottom: '10px'
+		marginBottom: '10px',
+		'& a': {
+				textDecoration: 'none',
+				color: '#600404',
+				transition: '.5s ease color',
+				'&:hover': {
+					color: '#444'
+				}
+			}
 	},
 	cardHeader: {
 		'&& .MuiCardHeader-title': {
@@ -30,6 +38,7 @@ const useStyles = makeStyles({
 		padding: '3px 16px',
 		'&& .MuiTypography-body1': {
 			fontSize: '1rem',
+			
 		},
 		'&& .MuiTypography-body2': {
 			color: 'rgb(0 0 0 / 99%)',
@@ -74,7 +83,6 @@ const Post = ({post}) => {
 		dispatch(setPostDetailsURL(objectID))
 		dispatch(fetchPostDetails(objectID))
 	}
-	console.log(post)
 	return (
 		<Card className={classes.post}>
 			<CardHeader 
@@ -87,8 +95,8 @@ const Post = ({post}) => {
 				className={classes.cardHeader}
 			/>
 			<CardContent className={classes.cardContent} >
-				<Typography variant='body1' component='h2'>
-					{post.title}
+				<Typography variant='body1' component='h2' onClick={() => handlePostDetails(post.objectID)}>
+			 		<Link to={`/stories/${post.objectID}`}> {post.title}</Link> 
 				</Typography>
 			</CardContent>
 			<CardActions className={classes.cardActions} >
@@ -96,28 +104,17 @@ const Post = ({post}) => {
 					<ArrowDropUpIcon />
 					<span className={classes.actionInfo}>{post.points}</span>
 				</span>
-				<span className={[classes.actions, classes.childrenCount].join(' ')}>
-					<IconButton>
-						<CommentIcon />
-					</IconButton>
-					<span className={classes.actionInfo}>{post.num_comments}</span>
+				<span className={[classes.actions, classes.childrenCount].join(' ')}
+				 onClick={() => handlePostDetails(post.objectID)}>
+				 	<Link to={`/stories/${post.objectID}`}>
+						<IconButton>
+							<CommentIcon />
+						</IconButton>
+						<span className={classes.actionInfo}>{post.num_comments}</span>
+					</Link>
 				</span>
 			</CardActions>
-			{/*<span className={classes.postTitle} onClick={() => handlePostDetails(post.objectID)} >
-			 <Link to={`/stories/${post.objectID}`}> {post.title}</Link> 
-			</span>
-			<div className={classes.postDetails} > 
-				<span> 
-					{`${post.points} points`}
-				</span>
-				<span> 
-					{post.author}
-				</span> 
-				<span> 
-					{`${post.num_comments} comments`}
-				</span>  
-
-			</div>*/}
+			
 		</Card>
 	)
 }

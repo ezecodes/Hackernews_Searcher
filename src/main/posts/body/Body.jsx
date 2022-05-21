@@ -10,10 +10,15 @@ const useStyles = makeStyles({
 		display: 'flex',
 		margin: '21px 0 0 0',
 		padding: '0 59px',
+		['@media (max-width: 620px)']: {
+			padding: '0 20px'
+		},
+		['@media (max-width: 425px)']: {
+			padding: '0 10px'
+		}
 	},
 	bodyContent: {
 		width: '100%',
-		
 	},
 	
 })
