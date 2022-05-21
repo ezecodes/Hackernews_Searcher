@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {fetchPostDetails, setPostDetailsURL} from '../../../../redux/appSlice'
 
 import Card from '@material-ui/core/Card';
@@ -79,9 +79,10 @@ const getDate = (date) => {
 const Post = ({post}) => {
 	const dispatch = useDispatch()
 	const classes = useStyles()
-	const handlePostDetails = (objectID) => {
-		dispatch(setPostDetailsURL(objectID))
-		dispatch(fetchPostDetails(objectID))
+	const find = useSelector(state => state.app.postDetails.findIndex(i => i.id == post.objectID))
+	const handlePostDetails = () => {
+		dispatch(setPostDetailsURL(post.objectID))
+		find === -1 && dispatch(fetchPostDetails(post.objectID))
 	}
 	return (
 		<Card className={classes.post}>
@@ -95,7 +96,7 @@ const Post = ({post}) => {
 				className={classes.cardHeader}
 			/>
 			<CardContent className={classes.cardContent} >
-				<Typography variant='body1' component='h2' onClick={() => handlePostDetails(post.objectID)}>
+				<Typography variant='body1' component='h2' onClick={handlePostDetails}>
 			 		<Link to={`/stories/${post.objectID}`}> {post.title}</Link> 
 				</Typography>
 			</CardContent>
