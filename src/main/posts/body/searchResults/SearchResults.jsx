@@ -2,8 +2,9 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { useSelector } from 'react-redux'
 import Post from './Post'
-import { Preloader, TailSpin } from 'react-preloader-icon'
+import { Preloader, ThreeDots } from 'react-preloader-icon'
 import IconButton from '@material-ui/core/IconButton';
+import Grow from '@material-ui/core/Grow';
 
 const useStyles = makeStyles({
 	resultsMain: {
@@ -22,13 +23,13 @@ const useStyles = makeStyles({
 const Loader = () => {
 	const classes = useStyles()
 	return <div className={classes.loader}>
-		<Preloader 
-	    use={TailSpin}
-	    size={50}
+		<Preloader
+	    use={ThreeDots}
+	    size={33}
 	    strokeWidth={6}
-	    strokeColor="#262626"
+	    strokeColor="#5c568b"
 	    duration={2000}
-	  />
+  	/>
 	</div>	
 }
 
@@ -38,17 +39,19 @@ const SearchResults = () => {
 	const loader = useSelector(state => state.app.loader.post)
 	return (
 		<section className={classes.resultsMain} >
-			<React.Suspense fallback={<Loader />}>
-				<div className={classes.results}>
-					{
-						hits.map((post, i) => {
-							return (
-								<Post key={i} post={post} />
-							)
-						})
-					}
-				</div>
-			</React.Suspense>
+			{loader ? <Loader /> 
+				: <Grow in={!loader}>
+					<div className={classes.results}>
+						{
+							hits.map((post, i) => {
+								return (
+									<Post key={i} post={post} />
+								)
+							})
+						}
+					</div>
+				</Grow>
+			}
 		</section>
 	)
 }
