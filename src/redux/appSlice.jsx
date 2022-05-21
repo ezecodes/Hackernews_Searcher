@@ -18,12 +18,14 @@ export const fetchPostDetails = createAsyncThunk(
 
 const initialState = {
 	results: [],
+	query: '',
 	light: true,
 	loader: {
     post: false,
     postDetails: false
   },
-	postDetails: {},
+  placeholderImg: true,
+	postDetails: [],
 	postDetailsURL: ''
 }
 
@@ -31,6 +33,12 @@ const appSlice = createSlice({
 	name: 'app',
 	initialState,
 	reducers: {
+		setQuery: (state, action) => {
+			state.query = action.payload
+		},
+		setPlaceholderImg: (state, action) => {
+			state.placeholderImg = action.payload
+		},
 		setMode: (state, action) => {
 			state.light = action.payload
 		},
@@ -43,7 +51,8 @@ const appSlice = createSlice({
 			state.loader.post = true
 		})
 		builder.addCase(fetchPosts.rejected, (state, action) => {
-			console.log('rejected')
+			state.loader.post = false
+			state.placeholderImg = true
 		})
 		builder.addCase(fetchPosts.fulfilled, (state, action) => {
 			state.results = [...action.payload.hits]
@@ -54,10 +63,10 @@ const appSlice = createSlice({
 		})
 		builder.addCase(fetchPostDetails.fulfilled, (state, action) => {
       state.loader.postDetails = false
-			state.postDetails = {...action.payload}
+			state.postDetails = [...state.postDetails, action.payload]
 		})
 	}
 })
-export const {setPostDetailsURL, setMode} = appSlice.actions
+export const {setPostDetailsURL, setMode, setPlaceholderImg, setQuery} = appSlice.actions
 
 export default appSlice.reducer
