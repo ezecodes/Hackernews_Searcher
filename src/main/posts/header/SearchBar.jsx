@@ -5,8 +5,8 @@ import SearchIcon from '@material-ui/icons/Search'
 import { makeStyles } from '@material-ui/core/styles'
 import IconButton from '@material-ui/core/IconButton'
 import EditIcon from '@material-ui/icons/Edit'
-import { useDispatch } from 'react-redux'
-import { fetchPosts } from '../../../redux/appSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchPosts,setPlaceholderImg, setQuery } from '../../../redux/appSlice'
 
 const useStyles = makeStyles({
 	searchBar: {
@@ -31,7 +31,7 @@ const useStyles = makeStyles({
 		}
 	},
 	searchIcon: {
-		fill: '#c5a788',
+		fill: '#5c568b',
 		fontSize: '1.7rem'
 	},
 	attrIcon: {
@@ -41,22 +41,32 @@ const useStyles = makeStyles({
 
 
 const SearchBar = () => {
+	const placeholderImg = useSelector(state => state.app.placeholderImg)
 	const dispatch = useDispatch()
 	const classes = useStyles()
-	const handleInput = (query) => {
-		dispatch(fetchPosts(query))
-	}
-	const setAttr = () => {
+	const query = useSelector(state => state.app.query)
+	const [timer, setTimer] = React.useState(null)
 
+	const handleInput = (value) => {
+		dispatch(setQuery(value))
+		clearTimeout(timer)
+		const newTimer = setTimeout(() => {
+			if (placeholderImg) {
+				dispatch(setPlaceholderImg(false))
+			}
+			dispatch(fetchPosts(query))
+		}, 1500)
+		setTimer(newTimer)
 	}
 	return (
 		<div className={classes.searchBar}>
 			<TextField 
+				onChange={({target}) => handleInput(target.value)}
+				value={query}
 				className={classes.input} 
 				variant='outlined' 
 				color='primary'
 				placeholder='Search stories by title, url, or author'
-				onChange={({target}) => handleInput(target.value)} 
 				InputProps={{
 		    	startAdornment: <InputAdornment position='start' >
 		    		<SearchIcon className={classes.searchIcon} />
