@@ -19,16 +19,9 @@ const useStyles = makeStyles({
 	header: {
 		position: 'sticky',
 		width: '100%',
-		padding: '0 50px',
 		marginTop: '3rem',
 		display: 'flex',
 		flexDirection: 'column',
-		['@media (max-width: 620px)']: {
-			padding: '0 20px'
-		},
-		['@media (max-width: 425px)']: {
-			padding: '0 12px'
-		},
 		
 	},
 	headerItem: {
@@ -37,7 +30,6 @@ const useStyles = makeStyles({
 			lineHeight: '1.1',
 			color: '#838383',
 			fontFamily: 'LibreFranklin-Bold !important',
-
 		},
 		'&& strong': {
 			color: '#ff8303'
