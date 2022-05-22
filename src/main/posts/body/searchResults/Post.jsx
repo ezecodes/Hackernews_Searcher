@@ -17,6 +17,7 @@ import IconButton from '@material-ui/core/IconButton';
 const useStyles = makeStyles({
 	post: {
 		marginBottom: '10px',
+		boxShadow: '0px 0px 4px 0px #c7c6c6',
 		'& a': {
 				textDecoration: 'none',
 				color: '#600404',

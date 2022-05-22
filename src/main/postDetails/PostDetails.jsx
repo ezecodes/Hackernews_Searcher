@@ -16,19 +16,28 @@ const useStyles = makeStyles({
 		width: '100%',
 		display: 'flex',
 		flexDirection: 'column',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		alignItems: 'center',
+		padding: '0 130px',
+		['@media (max-width: 1024px)']: {
+			padding: '0 59px'
+		},
+		['@media (max-width: 700px)']: {
+			padding: '0 13px'
+		},
 	},
 	detailsContent: {
+		width: '100%',
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center',
-		flexDirection: 'column',
-		width: '900px',
-		padding: '0 4%',
-		['@media (max-width: 425px)']: {
-			width: '100%',
-			padding: '0 1.5%'
-		}
+		flexDirection: 'column'
+	},
+	detailsHeader: {
+		display: 'flex',
+		justifyContent: 'space-between',
+		width: '100%',
+		margin: '10px 0'
 	},
 	arrowUp: {
 		position: 'fixed',
@@ -55,16 +64,16 @@ const PostDetails = () => {
 	}
 	return (
 		<section className={classes.postDetails} >
-			<header className={classes.detailsHeader}>
-				<div className={classes.headerItem}>
-					<Link to='/'>
-						<IconButton>
-							<ArrowBackIcon />
-						</IconButton>
-					</Link>
-				</div>
-			</header>
 			<div className={classes.detailsContent}>
+				<header className={classes.detailsHeader}>
+					<div className={classes.headerItem}>
+						<Link to='/'>
+							<IconButton>
+								<ArrowBackIcon />
+							</IconButton>
+						</Link>
+					</div>
+				</header>
 				{!loader && <PostDetail story={story} />}
 			</div>
 			<Backdrop className={classes.backdrop} open={loader}>

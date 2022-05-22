@@ -55,7 +55,7 @@ const SearchBar = () => {
 				dispatch(setPlaceholderImg(false))
 			}
 			dispatch(fetchPosts(query))
-		}, 1500)
+		}, 1000)
 		setTimer(newTimer)
 	}
 	return (
