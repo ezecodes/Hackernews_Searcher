@@ -16,9 +16,12 @@ const UserAvatar = (props) => {
 	return (
 		<Avatar 
 			className={[className].join(' ')} 
-			style={{background: colors[name.length] || colors[Math.floor(Math.random() * colors.length -1)] , textTransform: 'uppercase'}}
-			> 
-				{val} 
+			style={{
+				background: colors[name.length] || colors[Math.floor(Math.random() * colors.length -2)],
+				textTransform: 'uppercase'
+			}}
+		> 
+			{val} 
 		</Avatar>
 	)
 }
