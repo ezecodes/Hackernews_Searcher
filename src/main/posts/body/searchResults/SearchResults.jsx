@@ -20,6 +20,13 @@ const useStyles = makeStyles({
 	results: {
 		position: 'relative'
 	},
+	notFound: {
+		display: 'flex',
+		fontSize: '.9rem',
+		textAlign: 'center',
+		lineHeight: '1.5',
+		justifyContent: 'center'
+	},
 	arrowUp: {
 		position: 'fixed',
 		bottom: '0',
@@ -55,7 +62,10 @@ const SearchResults = () => {
 			{loader ? <Loader /> 
 				: <Grow in={!loader}>
 					<div className={classes.results}>
-						{
+						{ hits.length === 0 ? 
+							<div className={classes.notFound}>
+								<p> Search query not found <br/> Try another search </p>
+							</div> :
 							hits.map((post, i) => {
 								return (
 									<Post key={i} post={post} />
