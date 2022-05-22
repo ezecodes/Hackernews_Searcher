@@ -9,19 +9,21 @@ const useStyles = makeStyles({
 		height: '100%',
 		width: '100%',
 		display: 'flex',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		padding: '0 130px',
+		['@media (max-width: 1024px)']: {
+			padding: '0 59px'
+		},
+		['@media (max-width: 700px)']: {
+			padding: '0 13px'
+		},
 	},
 	content: {
+		width: '100%',
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center',
 		flexDirection: 'column',
-		width: '900px',
-		padding: '0 4%',
-		['@media (max-width: 1024px)']: {
-			width: '100%',
-			padding: '0'
-		}
 	}
 })
 const Posts = () => {
