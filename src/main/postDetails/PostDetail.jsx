@@ -149,7 +149,7 @@ const PostDetail = ({story}) => {
 				>
 					<a href={`${story.url}`}> {story.url} </a>
 				</Popper>*/}
-				<a href={story.url}> <IconButton 
+				<a href={story.url} target='_blank'> <IconButton 
 					onMouseOver={({target}) => handlePopper(true, target)} 
 					onMouseOut={() => handlePopper(false, null)}
 				>
