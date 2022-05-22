@@ -144,17 +144,17 @@ const PostDetail = ({story}) => {
 				<span className={classes.actionInfo}>{story.children.length}</span>
 			</span>
 			{URL && <span className={classes.actions}>
-				<Popper open={Boolean(anchorEl)} className={classes.popper}
+				{/*<Popper open={Boolean(anchorEl)} className={classes.popper}
 					anchorEl={anchorEl} placement='top-start'
 				>
 					<a href={`${story.url}`}> {story.url} </a>
-				</Popper>
-				<IconButton 
+				</Popper>*/}
+				<a href={story.url}> <IconButton 
 					onMouseOver={({target}) => handlePopper(true, target)} 
 					onMouseOut={() => handlePopper(false, null)}
 				>
 					<LinkIcon />
-				</IconButton>
+				</IconButton> </a>
 			</span>}
 		</CardActions>
 		<React.Suspense>
