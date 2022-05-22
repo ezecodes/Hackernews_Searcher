@@ -7,6 +7,8 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import IconButton from '@material-ui/core/IconButton'
 import { Link } from 'react-router-dom'
+import Fade from '@material-ui/core/Fade';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 
 const useStyles = makeStyles({
 	postDetails: {
@@ -28,12 +30,18 @@ const useStyles = makeStyles({
 			padding: '0 1.5%'
 		}
 	},
+	arrowUp: {
+		position: 'fixed',
+		bottom: '0',
+		right: '0'
+	},
 	backdrop: {
 		background: '#00000026',
 		'& svg': {
 			color: '#48496a'
 		}
-	}
+	},
+
 	
 })
 
@@ -42,6 +50,9 @@ const PostDetails = () => {
 	const objectID = useSelector(state => state.app.postDetailsURL)
 	const story = useSelector(state => state.app.postDetails.find(i => i.id == objectID))
 	const loader = useSelector(state => state.app.loader.postDetails)
+	const handleScroll = () => {
+		window.scrollTo({top: 0, behavior: 'smooth'})
+	}
 	return (
 		<section className={classes.postDetails} >
 			<header className={classes.detailsHeader}>
@@ -59,6 +70,11 @@ const PostDetails = () => {
 			<Backdrop className={classes.backdrop} open={loader}>
         <CircularProgress color="inherit" />
       </Backdrop>
+      <Fade in={!loader}>
+				<IconButton className={classes.arrowUp} onClick={handleScroll} >
+					<ArrowUpwardIcon />
+				</IconButton>
+			</Fade>
 		</section>
 	)
 }
