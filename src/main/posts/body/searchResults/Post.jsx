@@ -66,6 +66,7 @@ const useStyles = makeStyles({
 		},
 	},
 	childrenCount: {
+		zIndex: 20,
 		'&& *:not(path)': {
 			color: '#7b86bb'
 		},
