@@ -5,6 +5,8 @@ import Post from './Post'
 import { Preloader, ThreeDots } from 'react-preloader-icon'
 import IconButton from '@material-ui/core/IconButton';
 import Grow from '@material-ui/core/Grow';
+import Fade from '@material-ui/core/Fade';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 
 const useStyles = makeStyles({
 	resultsMain: {
@@ -16,8 +18,13 @@ const useStyles = makeStyles({
 		marginTop: '30px'
 	},
 	results: {
-
+		position: 'relative'
 	},
+	arrowUp: {
+		position: 'fixed',
+		bottom: '0',
+		right: '0'
+	}
 })
 
 const Loader = () => {
@@ -37,8 +44,14 @@ const SearchResults = () => {
 	const classes = useStyles()
 	const hits = useSelector(state => state.app.results)
 	const loader = useSelector(state => state.app.loader.post)
+	const resultsMain = React.useRef(null)
+	const [showArrow, setArrow] = React.useState(false)
+	const handleScroll = () => {
+		window.scrollTo({top: 0, behavior: 'smooth'})
+	}
 	return (
-		<section className={classes.resultsMain} >
+		<section className={classes.resultsMain} ref={resultsMain} >
+			
 			{loader ? <Loader /> 
 				: <Grow in={!loader}>
 					<div className={classes.results}>
@@ -49,6 +62,11 @@ const SearchResults = () => {
 								)
 							})
 						}
+						<Fade in={true}>
+							<IconButton className={classes.arrowUp} onClick={handleScroll} >
+								<ArrowUpwardIcon />
+							</IconButton>
+						</Fade>
 					</div>
 				</Grow>
 			}
