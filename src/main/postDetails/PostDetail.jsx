@@ -10,10 +10,13 @@ import IconButton from '@material-ui/core/IconButton';
 import CommentIcon from '@material-ui/icons/Comment';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import LinkIcon from '@material-ui/icons/Link';
+import PersonIcon from '@material-ui/icons/Person';
 import Typography from '@material-ui/core/Typography';
 import UserAvatar from '../UserAvatar';
 import { Link } from 'react-router-dom'
 import Popper from '@material-ui/core/Popper';
+
+
 
 const useStyles = makeStyles({
 	cardMain: {
@@ -31,6 +34,7 @@ const useStyles = makeStyles({
 	},
 	cardContent: {
 		padding: '3px 16px',
+		wordBreak: 'break-word',
 		'&& .MuiTypography-body1': {
 			fontSize: '1rem',
 			fontFamily: 'LibreFranklin-Bold !important',
@@ -83,6 +87,10 @@ const useStyles = makeStyles({
 		'& a': {
 			fontSize: '14px'
 		}
+	},
+	authorNotify: {
+		fontSize: '.75rem',
+		color: '#ff7f50'
 	}
 })
 
@@ -90,7 +98,7 @@ const getDate = (date) => {
 	return (/[0-9]*-[0-9]*-[0-9]*/).exec(date)[0]
 }
 
-const PostDetail = ({story}) => {
+const PostDetail = ({story, storyAuthor}) => {
 	const classes = useStyles();
 	const [expanded, setExpanded] = React.useState(false);
 	const [anchorEl, setAnchorEl] = React.useState(null)
@@ -120,7 +128,11 @@ const PostDetail = ({story}) => {
 					className={classes.avatar} 
 				/> 
 			}
-			title={story.author}
+			title={
+				story.type === 'comment' && story.author === storyAuthor ? 
+						<> {story.author} <span className={classes.authorNotify} > (Author) </span> </> : 
+						<> {story.author} </>
+				}
 			subheader={getDate(story.created_at)}
 		/>
 		<CardContent className={classes.cardContent} >
@@ -158,19 +170,17 @@ const PostDetail = ({story}) => {
 				</IconButton> </a>
 			</span>}
 		</CardActions>
-		<React.Suspense>
-			{
-				story.children.map((i, key) => {
-					return (
-						<Collapse key={key} in={expanded} timeout="auto" unmountOnExit >
-							<div className={classes.nestedChild} >
-								<PostDetail story={i} />
-							</div>
-						</Collapse>
-					)
-				})
-			}
-		</React.Suspense>
+		{
+			story.children.map((i, key) => {
+				return (
+					<Collapse key={key} in={expanded} timeout="auto" unmountOnExit >
+						<div className={classes.nestedChild} >
+							<PostDetail story={i} storyAuthor={storyAuthor} />
+						</div>
+					</Collapse>
+				)
+			})
+		}
 	</Card>
 	)
 }

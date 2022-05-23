@@ -74,7 +74,7 @@ const PostDetails = () => {
 						</Link>
 					</div>
 				</header>
-				{!loader && <PostDetail story={story} />}
+				{!loader && <PostDetail story={story} storyAuthor={story.author} />}
 			</div>
 			<Backdrop className={classes.backdrop} open={loader}>
         <CircularProgress color="inherit" />
