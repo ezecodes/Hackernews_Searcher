@@ -18,6 +18,7 @@ import Popper from '@material-ui/core/Popper';
 const useStyles = makeStyles({
 	cardMain: {
 		width: '100%',
+		boxShadow: '0px 0px 4px 2px #ebebeb',
 		'&& .MuiCardHeader-title': {
 			fontWeight: 'bold'
 		},
@@ -137,8 +138,8 @@ const PostDetail = ({story}) => {
 				<ArrowDropUpIcon />
 				<span className={classes.actionInfo}>{story.points}</span>
 			</span> : <></>}
-			<span className={[classes.actions, classes.childrenCount].join(' ')} >
-				<IconButton onClick={() => handleExpandClick()} >
+			<span className={[classes.actions, classes.childrenCount].join(' ')} onClick={() => handleExpandClick()} >
+				<IconButton >
 					<CommentIcon />
 				</IconButton>
 				<span className={classes.actionInfo}>{story.children.length}</span>
