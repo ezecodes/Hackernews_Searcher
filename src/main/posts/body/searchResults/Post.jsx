@@ -13,14 +13,15 @@ import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import Typography from '@material-ui/core/Typography';
 import UserAvatar from '../../../UserAvatar';
 import IconButton from '@material-ui/core/IconButton';
+import clsx from 'clsx'
 
 const useStyles = makeStyles({
 	post: {
 		marginBottom: '10px',
-		boxShadow: '0px 0px 4px 0px #c7c6c6',
+		boxShadow: '0px 0px 4px 2px #ebebeb',
 		'& a': {
 				textDecoration: 'none',
-				color: '#600404',
+				color: '#8f0505',
 				transition: '.5s ease color',
 				'&:hover': {
 					color: '#444'
@@ -42,8 +43,8 @@ const useStyles = makeStyles({
 			
 		},
 		'&& .MuiTypography-body2': {
-			color: 'rgb(0 0 0 / 99%)',
-			fontSize: '.965rem',
+			color: 'rgb(0 0 0 / 85%)',
+			fontSize: '.95rem',
 			lineHeight: '1.4'
 		}
 	},
@@ -59,6 +60,30 @@ const useStyles = makeStyles({
 		fontSize: '.8rem !important',
 		'&& .MuiButtonBase-root': {
 			padding: '3px',
+		}
+	},
+	storyText: {
+		overflow: 'hidden',
+		position: 'relative',
+		maxHeight: '150px',
+		display: 'flex',
+		padding: '5px 0',
+		'& ::after': {
+			content: '',
+		}
+	},
+	readmore: {
+		position: 'absolute',
+		background: 'linear-gradient(179deg, transparent, #ffffff)',
+		height: '100%',
+		width: '100%',
+		top: '0',
+		display: 'flex',
+		alignItems: 'flex-end',
+		justifyContent: 'flex-end',
+		'& a': {
+			fontSize: '.9rem',
+			color: '#2b2ba5'
 		}
 	},
 	points: {
@@ -86,6 +111,10 @@ const Post = ({post}) => {
 		dispatch(setPostDetailsURL(post.objectID))
 		find === -1 && dispatch(fetchPostDetails(post.objectID))
 	}
+	const [showReadmore, setReadmore] = React.useState(true)
+	const handleReadmore = () => {
+
+	}
 	return (
 		<Card className={classes.post}>
 			<CardHeader 
@@ -101,6 +130,17 @@ const Post = ({post}) => {
 				<Typography variant='body1' component='h2' onClick={handlePostDetails}>
 			 		<Link to={`/stories/${post.objectID}`}> {post.title}</Link> 
 				</Typography>
+				<div className={classes.storyText}>
+					{ post.story_text !== '' && post.story_text !== null &&
+						<div className={classes.readmore}> 
+							<Link to={`/stories/${post.objectID}`} 
+				 				onClick={() => handlePostDetails(post.objectID)}> 
+				 				read more... 
+				 			</Link> 
+						</div>
+					}
+					<Typography variant='body2' component='p' dangerouslySetInnerHTML={{__html: post.story_text }} />
+				</div>
 			</CardContent>
 			<CardActions className={classes.cardActions} >
 				<span className={[classes.actions, classes.points].join(' ')}>
