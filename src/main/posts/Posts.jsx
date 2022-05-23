@@ -10,7 +10,7 @@ const useStyles = makeStyles({
 		width: '100%',
 		display: 'flex',
 		justifyContent: 'center',
-		padding: '0 130px',
+		padding: '0 240px',
 		['@media (max-width: 1024px)']: {
 			padding: '0 59px'
 		},
