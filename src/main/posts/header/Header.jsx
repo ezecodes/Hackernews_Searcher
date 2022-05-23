@@ -56,7 +56,7 @@ const useStyles = makeStyles({
 	},
 	sortIcon: {
 		fontSize: '2rem',
-		color: '#000e42'
+		color: '#384fa1'
 	},
 	spanh1: {
 		fontSize: '1rem',
