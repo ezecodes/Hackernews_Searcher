@@ -31,22 +31,28 @@ const initialState = {
 	postDetailsURL: ''
 }
 function SORT(arr, rule, matchCase) {
-	if (rule === 'up') {
-		arr.sort((a,b) => {
-			if (String(a[`${matchCase}`]).toLowerCase() > String(b[`${matchCase}`]).toLowerCase()) return 1
+	arr.sort((a,b) => {
+		let cur, next
+		if (typeof a[`${matchCase}`] === 'string' && typeof b[`${matchCase}`]) {
+			cur = String(a[`${matchCase}`]).toLowerCase()
+			next = String(b[`${matchCase}`]).toLowerCase()
+		} else {
+			cur = a[`${matchCase}`]
+			next = b[`${matchCase}`]
+		}
+		if (rule === 'up') {
+			if (cur > next) return 1
 			else {
 				return -1
 			}
-		})
-	}
-	if (rule === 'down') {
-		arr.sort((a,b) => {
-			if (String(a[`${matchCase}`]).toLowerCase() > String(b[`${matchCase}`]).toLowerCase()) return -1
+		} 
+		if (rule === 'down') {
+			if (cur > next) return -1
 			else {
 				return 1
 			}
-		})
-	}
+		}
+	})
 	return arr
 }
 const appSlice = createSlice({
