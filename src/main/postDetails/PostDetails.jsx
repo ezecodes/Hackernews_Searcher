@@ -18,7 +18,7 @@ const useStyles = makeStyles({
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'center',
-		padding: '0 130px',
+		padding: '0 240px',
 		['@media (max-width: 1024px)']: {
 			padding: '0 59px'
 		},
@@ -45,7 +45,7 @@ const useStyles = makeStyles({
 		right: '0'
 	},
 	backdrop: {
-		background: '#00000026',
+		background: '#e3e3e326',
 		'& svg': {
 			color: '#48496a'
 		}
