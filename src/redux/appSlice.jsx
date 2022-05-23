@@ -33,7 +33,7 @@ const initialState = {
 function SORT(arr, rule, matchCase) {
 	if (rule === 'up') {
 		arr.sort((a,b) => {
-			if (a[`${matchCase}`] > b[`${matchCase}`]) return 1
+			if (String(a[`${matchCase}`]).toLowerCase() > String(b[`${matchCase}`]).toLowerCase()) return 1
 			else {
 				return -1
 			}
@@ -41,7 +41,7 @@ function SORT(arr, rule, matchCase) {
 	}
 	if (rule === 'down') {
 		arr.sort((a,b) => {
-			if (a[`${matchCase}`] > b[`${matchCase}`]) return -1
+			if (String(a[`${matchCase}`]).toLowerCase() > String(b[`${matchCase}`]).toLowerCase()) return -1
 			else {
 				return 1
 			}
