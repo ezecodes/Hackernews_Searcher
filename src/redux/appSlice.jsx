@@ -33,7 +33,7 @@ const initialState = {
 function SORT(arr, rule, matchCase) {
 	arr.sort((a,b) => {
 		let cur, next
-		if (typeof a[`${matchCase}`] === 'string' && typeof b[`${matchCase}`]) {
+		if (typeof a[`${matchCase}`] === 'string' && typeof b[`${matchCase}`] === 'string') {
 			cur = String(a[`${matchCase}`]).toLowerCase()
 			next = String(b[`${matchCase}`]).toLowerCase()
 		} else {
