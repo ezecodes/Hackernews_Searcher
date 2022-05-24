@@ -6,25 +6,13 @@ import { useSelector } from 'react-redux'
 import Posts from './main/posts/Posts'
 import PostDetails from './main/postDetails/PostDetails'
 
-const theme = createTheme({
-	primary: {
-		main: '#a29cff',
-	},
-	secondary: {
-		main: ''
-	}
-})
-
-
 const App = () => {
 	const currentURL = useSelector(state => state.app.postDetailsURL)
 	return (
-		<ThemeProvider theme={theme}>
-			<Routes>
-				<Route path='/' element={<Posts />} />
-				<Route path={`/stories/${currentURL}`} element={<PostDetails />} />
-			</Routes>
-		</ThemeProvider>
+		<Routes>
+			<Route path='/' element={<Posts />} />
+			<Route path={`/stories/${currentURL}`} element={<PostDetails />} />
+		</Routes>
 	)
 }
 export default App
