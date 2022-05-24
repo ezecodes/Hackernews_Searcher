@@ -67,6 +67,7 @@ const useStyles = makeStyles({
 	},
 	childrenCount: {
 		zIndex: 20,
+		cursor: 'pointer',
 		'&& *:not(path)': {
 			color: '#7b86bb'
 		},
@@ -147,14 +148,14 @@ const PostDetail = ({story, storyAuthor}) => {
 		</CardContent>
 		<CardActions disableSpacing className={classes.cardActions} >
 			{ story.points !== null ? <span className={[classes.actions, classes.points].join(' ')} >
-				<ArrowDropUpIcon />
-				<span className={classes.actionInfo}>{story.points}</span>
+				{/*<ArrowDropUpIcon />*/}
+				<span className={classes.actionInfo}>{`${story.points} points`}</span>
 			</span> : <></>}
 			<span className={[classes.actions, classes.childrenCount].join(' ')} onClick={() => handleExpandClick()} >
-				<IconButton >
+				{/*<IconButton >
 					<CommentIcon />
-				</IconButton>
-				<span className={classes.actionInfo}>{story.children.length}</span>
+				</IconButton>*/}
+				<span className={classes.actionInfo}>{`${story.children.length} comments`}</span>
 			</span>
 			{URL && <span className={classes.actions}>
 				{/*<Popper open={Boolean(anchorEl)} className={classes.popper}

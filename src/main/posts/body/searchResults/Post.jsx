@@ -82,8 +82,8 @@ const useStyles = makeStyles({
 		alignItems: 'flex-end',
 		justifyContent: 'flex-end',
 		'& a': {
-			fontSize: '.9rem',
-			color: '#2b2ba5'
+			fontSize: '.83rem',
+			color: '#1919d1'
 		}
 	},
 	points: {
@@ -93,6 +93,7 @@ const useStyles = makeStyles({
 	},
 	childrenCount: {
 		zIndex: 20,
+		cursor: 'pointer',
 		'&& *:not(path)': {
 			color: '#7b86bb'
 		},
@@ -144,16 +145,16 @@ const Post = ({post}) => {
 			</CardContent>
 			<CardActions className={classes.cardActions} >
 				<span className={[classes.actions, classes.points].join(' ')}>
-					<ArrowDropUpIcon />
-					<span className={classes.actionInfo}>{post.points}</span>
+					{/*<ArrowDropUpIcon />*/}
+					<span className={classes.actionInfo}>{`${post.points} points`}</span>
 				</span>
 				<span className={[classes.actions, classes.childrenCount].join(' ')}
 				 onClick={() => handlePostDetails(post.objectID)}>
 				 	<Link to={`/stories/${post.objectID}`}>
-						<IconButton>
+						{/*<IconButton>
 							<CommentIcon />
-						</IconButton>
-						<span className={classes.actionInfo}>{post.num_comments}</span>
+						</IconButton>*/}
+						<span className={classes.actionInfo}>{`${post.num_comments} comments`}</span>
 					</Link>
 				</span>
 			</CardActions>
