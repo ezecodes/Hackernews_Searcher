@@ -1,5 +1,5 @@
 # Hackernews_Searcher #
-<p> This application searches hacker news for stories, author names and comments based on query parameters.</p>
+<p> This application searches hacker news for stories, author names and comments based on query parameters. Built with Reactjs</p>
 <h2> Perequisites </h2>
    <p>You must have these installed </p>
    <ol><li><a href='https://nodejs.org'> node.js </a></li></ol>
