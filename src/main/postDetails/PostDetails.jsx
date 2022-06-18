@@ -37,7 +37,13 @@ const useStyles = makeStyles({
 		display: 'flex',
 		justifyContent: 'space-between',
 		width: '100%',
-		margin: '10px 0'
+		margin: '10px 0',
+		top: 0,
+		position: 'sticky',
+		boxShadow: '0px 2px 2px 0px #f1f1f1',
+		background: 'rgba(255,255,255,.8)',
+		zIndex: 30,
+		backdropFilter: 'blur(6px)'
 	},
 	arrowUp: {
 		position: 'fixed',
