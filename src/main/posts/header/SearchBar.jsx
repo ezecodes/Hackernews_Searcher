@@ -4,9 +4,8 @@ import InputAdornment from '@material-ui/core/InputAdornment'
 import SearchIcon from '@material-ui/icons/Search'
 import { makeStyles } from '@material-ui/core/styles'
 import IconButton from '@material-ui/core/IconButton'
-import EditIcon from '@material-ui/icons/Edit'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchPosts,setPlaceholderImg, setQuery } from '../../../redux/appSlice'
+import { fetchPosts, setPlaceholderImg, setQuery } from '../../../redux/appSlice'
 
 const useStyles = makeStyles({
 	searchBar: {
@@ -14,17 +13,18 @@ const useStyles = makeStyles({
 		flexDirection: 'column'
 	},
 	input: {
+		height: '100%',
 		width: '100%',
 		'&& .MuiOutlinedInput-input': {
 			padding: '14.5px 14px',
-			color: '#64503b'
+			color: '#64503b',
+			background: '#fff'
 		},
 		'&& .MuiOutlinedInput-root': {
-			border: '1px solid #343c5e',
+			height: '100%',
+			outline: '1px solid #ababab',
 			transition: '.6s ease all',
-			'&&:hover': {
-				borderColor: '#000'
-			}
+			
 		},
 		'&& .MuiOutlinedInput-notchedOutline': {
 			display: 'none'
@@ -40,7 +40,7 @@ const useStyles = makeStyles({
 })
 
 
-const SearchBar = () => {
+const SearchBar = ({classnames, inlineStyles}) => {
 	const placeholderImg = useSelector(state => state.app.placeholderImg)
 	const dispatch = useDispatch()
 	const classes = useStyles()
@@ -59,7 +59,7 @@ const SearchBar = () => {
 		setTimer(newTimer)
 	}
 	return (
-		<div className={classes.searchBar}>
+		<div className={[classes.searchBar, classnames].join(' ')} style={inlineStyles}>
 			<TextField 
 				onChange={({target}) => handleInput(target.value)}
 				value={query}
@@ -73,9 +73,6 @@ const SearchBar = () => {
 		    	</InputAdornment>
 		    }}
 			/>
-			{/*<IconButton onClick={setAttr} className={classes.attrIcon} >
-				<EditIcon />
-			</IconButton>*/}
 		</div>
 	)
 }
