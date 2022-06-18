@@ -39,10 +39,10 @@ const Loader = () => {
 	return <div className={classes.loader}>
 		<Preloader
 	    use={ThreeDots}
-	    size={33}
+	    size={50}
 	    strokeWidth={6}
 	    strokeColor="#5c568b"
-	    duration={2000}
+	    duration={1000}
   	/>
 	</div>	
 }
