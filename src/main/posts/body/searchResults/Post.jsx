@@ -49,7 +49,7 @@ const useStyles = makeStyles({
 		}
 	},
 	cardActions: {
-		padding: '5px',
+		padding: '10px 5px',
 		justifyContent: 'flex-end'
 	},
 	actions: {
@@ -95,7 +95,7 @@ const useStyles = makeStyles({
 		zIndex: 20,
 		cursor: 'pointer',
 		'&& *:not(path)': {
-			color: '#7b86bb'
+			color: '#8286bb'
 		},
 	},
 })
@@ -145,16 +145,16 @@ const Post = ({post}) => {
 			</CardContent>
 			<CardActions className={classes.cardActions} >
 				<span className={[classes.actions, classes.points].join(' ')}>
-					{/*<ArrowDropUpIcon />*/}
-					<span className={classes.actionInfo}>{`${post.points} points`}</span>
+					<ArrowDropUpIcon />
+					<span className={classes.actionInfo}>{post.points}</span>
 				</span>
 				<span className={[classes.actions, classes.childrenCount].join(' ')}
 				 onClick={() => handlePostDetails(post.objectID)}>
 				 	<Link to={`/stories/${post.objectID}`}>
-						{/*<IconButton>
+						<IconButton>
 							<CommentIcon />
-						</IconButton>*/}
-						<span className={classes.actionInfo}>{`${post.num_comments} comments`}</span>
+						</IconButton>
+						<span className={classes.actionInfo}>{post.num_comments}</span>
 					</Link>
 				</span>
 			</CardActions>
