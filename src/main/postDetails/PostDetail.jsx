@@ -69,7 +69,7 @@ const useStyles = makeStyles({
 		zIndex: 20,
 		cursor: 'pointer',
 		'&& *:not(path)': {
-			color: '#d14e10'
+			color: '#8286bb'
 		},
 	},
 	nestedPostDetail: {
@@ -147,22 +147,20 @@ const PostDetail = ({story, storyAuthor}) => {
 		 	dangerouslySetInnerHTML={{__html: story.text }} />
 		</CardContent>
 		<CardActions disableSpacing className={classes.cardActions} >
-			{ story.points !== null ? <span className={[classes.actions, classes.points].join(' ')} >
-				{/*<ArrowDropUpIcon />*/}
-				<span className={classes.actionInfo}>{`${story.points} points`}</span>
-			</span> : <></>}
+			{ story.points !== null ? 
+					<span className={[classes.actions, classes.points].join(' ')} >
+						<ArrowDropUpIcon />
+						<span className={classes.actionInfo}>{`${story.points}`}</span>
+					</span> 
+				: <></>
+			}
 			<span className={[classes.actions, classes.childrenCount].join(' ')} onClick={() => handleExpandClick()} >
-				{/*<IconButton >
+				<IconButton >
 					<CommentIcon />
-				</IconButton>*/}
-				<span className={classes.actionInfo}>{`${story.children.length} comments`}</span>
+				</IconButton>
+				<span className={classes.actionInfo}>{story.children.length}</span>
 			</span>
 			{URL && <span className={classes.actions}>
-				{/*<Popper open={Boolean(anchorEl)} className={classes.popper}
-					anchorEl={anchorEl} placement='top-start'
-				>
-					<a href={`${story.url}`}> {story.url} </a>
-				</Popper>*/}
 				<a href={story.url} target='_blank'> <IconButton 
 					onMouseOver={({target}) => handlePopper(true, target)} 
 					onMouseOut={() => handlePopper(false, null)}
