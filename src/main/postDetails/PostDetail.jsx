@@ -47,7 +47,7 @@ const useStyles = makeStyles({
 		}
 	},
 	cardActions: {
-		padding: '8px',
+		padding: '10px 5px',
 		justifyContent: 'flex-end'
 	},
 	actions: {
@@ -69,10 +69,10 @@ const useStyles = makeStyles({
 		zIndex: 20,
 		cursor: 'pointer',
 		'&& *:not(path)': {
-			color: '#7b86bb'
+			color: '#d14e10'
 		},
 	},
-	nestedChild: {
+	nestedPostDetail: {
 		margin: '5px 0 9px 10px',
 		boxShadow: '1px -4px 12px 0px #b9b9b92e'
 	},
@@ -175,7 +175,7 @@ const PostDetail = ({story, storyAuthor}) => {
 			story.children.map((i, key) => {
 				return (
 					<Collapse key={key} in={expanded} timeout="auto" unmountOnExit >
-						<div className={classes.nestedChild} >
+						<div className={classes.nestedPostDetail} >
 							<PostDetail story={i} storyAuthor={storyAuthor} />
 						</div>
 					</Collapse>
