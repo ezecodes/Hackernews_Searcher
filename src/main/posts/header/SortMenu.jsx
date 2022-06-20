@@ -72,7 +72,16 @@ const SortMenu = () => {
 			<Menu open={Boolean(anchorEl)}
 				className={classes.menu}
 				anchorEl={anchorEl} 
-				onClose={handleClose}>
+				onClose={handleClose}
+				anchorOrigin={{
+					vertical: 'top',
+		      horizontal: 'left',
+		    }}
+		    transformOrigin={{
+		    	vertical: 'top',
+		      horizontal: 'center',
+	   	 }}
+			>
 
 				{
 					['author', 'created_at_i', 'points', 'num_comments'].map((val, i) => {
