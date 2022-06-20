@@ -14,7 +14,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import Typography from '@material-ui/core/Typography';
 import UserAvatar from '../UserAvatar';
 import { Link } from 'react-router-dom'
-import Popper from '@material-ui/core/Popper';
+import Popover from '@material-ui/core/Popover';
 
 
 
@@ -27,7 +27,7 @@ const useStyles = makeStyles({
 		},
 		'&& .MuiCardHeader-subheader': {
 			fontSize: '.74rem'
-		}
+		},
 	},
 	avatar: {
 		textTransform: 'uppercase',
@@ -36,6 +36,20 @@ const useStyles = makeStyles({
 		'& a': {
 			color: 'inherit',
 			textDecoration: 'none'
+		}
+	},
+	popper: {
+		'& .MuiPaper-root': {
+			boxShadow: '0 0 6px 0px #e1d9ce',
+			background: '#fff',
+			padding: '5px 10px',
+			width: '300px',
+			wordBreak: 'break-all',
+			'& a': {
+				fontSize: '.95rem',
+				color: '#9f2727',
+				textDecoration: 'none'
+			}
 		}
 	},
 	cardContent: {
@@ -82,19 +96,7 @@ const useStyles = makeStyles({
 		margin: '5px 0 9px 10px',
 		boxShadow: '1px -4px 12px 0px #b9b9b92e'
 	},
-	popper: {
-		overflowWrap: 'anywhere',
-		zIndex: 20,
-		width: '214px',
-		left: '-7% !important',
-		top: '11px !important',
-		boxShadow: '0 0 6px 0px #e1d9ce',
-		background: '#fff',
-		padding: '5px',
-		'& a': {
-			fontSize: '14px'
-		}
-	},
+	
 	authorNotify: {
 		fontSize: '.75rem',
 		color: '#ff7f50'
@@ -119,7 +121,7 @@ const PostDetail = ({story, storyAuthor}) => {
 		if (bool) {
 			setAnchorEl(target)
 		} else {
-			setTimeout(() => setAnchorEl(null), 4000)
+			setAnchorEl(null)
 		}
 	}
 
@@ -173,13 +175,32 @@ const PostDetail = ({story, storyAuthor}) => {
 				</IconButton>
 				<span className={classes.actionInfo}>{story.children.length}</span>
 			</span>
-			{URL && <span className={classes.actions}>
-				<a href={story.url} target='_blank'> <IconButton 
-					onMouseOver={({target}) => handlePopper(true, target)} 
-					onMouseOut={() => handlePopper(false, null)}
+			{URL && 
+			<span className={classes.actions}>
+				<IconButton 
+					onClick={({target}) => handlePopper(true, target)} 
 				>
 					<LinkIcon />
-				</IconButton> </a>
+				</IconButton>
+				<Popover 
+					open={Boolean(anchorEl)}
+					onClose={() => handlePopper(false, null)}
+					anchorEl={anchorEl}
+					className={classes.popper}
+				  anchorOrigin={{
+				    vertical: 'bottom',
+				    horizontal: 'right',
+				  }}
+				  transformOrigin={{
+				    vertical: 'top',
+				    horizontal: 'right',
+				  }}
+				>
+				 <Typography variant='body2' variant='strong'> 
+				 	<a href={story.url} target='_blank' > {story.url} </a> 
+				 </Typography>
+				</Popover>
+				
 			</span>}
 		</CardActions>
 		{
