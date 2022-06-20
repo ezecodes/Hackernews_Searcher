@@ -34,6 +34,9 @@ const useStyles = makeStyles({
 		},
 		'&& .MuiCardHeader-subheader': {
 			fontSize: '.74rem'
+		},
+		'& a': {
+			color: 'inherit'
 		}
 	},
 	cardContent: {
@@ -121,9 +124,9 @@ const Post = ({post}) => {
 			<CardHeader 
 				avatar=
 					{
-						<UserAvatar name={post.author} />
+						<a href={`https://news.ycombinator.com/user?id=${post.author}`} target='_blank' > <UserAvatar name={post.author} /> </a>
 					}
-				title={post.author}
+				title={<a href={`https://news.ycombinator.com/user?id=${post.author}`} target='_blank' >{post.author}</a>}
 				subheader={getDate(post.created_at)}
 				className={classes.cardHeader}
 			/>

@@ -32,6 +32,12 @@ const useStyles = makeStyles({
 	avatar: {
 		textTransform: 'uppercase',
 	},
+	cardHeader: {
+		'& a': {
+			color: 'inherit',
+			textDecoration: 'none'
+		}
+	},
 	cardContent: {
 		padding: '3px 16px',
 		wordBreak: 'break-word',
@@ -123,16 +129,23 @@ const PostDetail = ({story, storyAuthor}) => {
 
 	return (
 	<Card className={classes.cardMain} >
-		<CardHeader 
+		<CardHeader className={classes.cardHeader}
 			avatar={
-				<UserAvatar name={story.author}
-					className={classes.avatar} 
-				/> 
+				<a href={`https://news.ycombinator.com/user?id=${story.author}`} target='_blank' >
+					<UserAvatar name={story.author}
+						className={classes.avatar} 
+					/> 
+				</a>
 			}
 			title={
 				story.type === 'comment' && story.author === storyAuthor ? 
-						<> {story.author} <span className={classes.authorNotify} > (Author) </span> </> : 
-						<> {story.author} </>
+					<a href={`https://news.ycombinator.com/user?id=${story.author}`} target='_blank'>
+						{story.author} 
+					 	<span className={classes.authorNotify} > (Author) </span>
+					</a> :
+					<a href={`https://news.ycombinator.com/user?id=${story.author}`} target='_blank'>
+						{story.author} 
+					</a>
 				}
 			subheader={getDate(story.created_at)}
 		/>
