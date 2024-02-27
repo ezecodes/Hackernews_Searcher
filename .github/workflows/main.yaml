@@ -14,6 +14,6 @@ jobs:
         with:
           node-version: 20
       - name: "Install packages"
-        run: npm install
+        run: npm install --legacy-peer-deps
       - name: "Build codebase"
         run: npm run build
