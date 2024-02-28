@@ -196,7 +196,7 @@ const PostDetail = ({story, storyAuthor}) => {
 				    horizontal: 'right',
 				  }}
 				>
-				 <Typography variant='body2' variant='strong'> 
+				 <Typography variant='body2'> 
 				 	<a href={story.url} target='_blank' > {story.url} </a> 
 				 </Typography>
 				</Popover>
