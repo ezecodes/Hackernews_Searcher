@@ -1,9 +1,7 @@
 import React from 'react'
 import SearchResults from './searchResults/SearchResults'
 import { makeStyles } from '@material-ui/core/styles'
-import IconButton from '@material-ui/core/IconButton'
-import EditAttributesIcon from '@material-ui/icons/EditAttributes'
-import image from '../../../../public/images/undraw_post_re_mtr4 (1).svg'
+import image from '/src/assets/images/undraw_post_re_mtr4 (1).svg'
 import { useSelector } from 'react-redux'
 
 const useStyles = makeStyles({
